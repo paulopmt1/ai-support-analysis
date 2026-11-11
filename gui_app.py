@@ -2385,6 +2385,9 @@ class AISupportAnalyzerGUI:
         if last_file:
             self.input_file_full_path = last_file
             self.input_file_var.set(os.path.basename(last_file))
+            # Validate the restored file so column mapping is checked before analysis
+            if os.path.exists(last_file):
+                self.validate_file(last_file)
         self.limit_var.set(ui_prefs.get('limit', 'No limit'))
         
         # Load analysis options
